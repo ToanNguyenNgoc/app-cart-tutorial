@@ -1,0 +1,41 @@
+<div class="container">
+    <div *ngIf="cartList.length===0" class="alert alert-primary" role="alert">
+        No products in the cart!<a style="margin-left: 4px;" [routerLink]="['/home/product']" routerLinkActive="router-link-active">Shopping now</a>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantiy</th>
+                <th scope="col">Total Price</th>
+                <th>Movie Item</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartList">
+                <th scope="row">{{item.productId}}</th>
+                <td>{{item.name}}</td>
+                <td><img *ngIf="item?.img" src="{{item.img}}" alt="" style="width: 100px;"></td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button (click)="decQnt(item.productId, item.qnt)" type="button" class="btn btn-outline-info">Giảm</button>
+                    <span>{{item.qnt}}</span>
+                    <button (click)="incQnt(item.productId, item.qnt)" type="button" class="btn btn-outline-info">Tăng</button>
+                </td>
+                <td>{{item.price * item.qnt}} VND</td>
+                <td>
+                    <button (click)="deleteItem(item.productId)" type="button" class="btn btn-danger">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h1 style="float: right;">Total: {{totalPrice}} VND</h1>
+    <button (click)="deleteAllItem()" class="btn btn-danger">
+        <i style="margin-right: 5px;" class="far fa-trash-alt"></i>Delete All Item
+    </button>
+</div>

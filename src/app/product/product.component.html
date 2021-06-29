@@ -1,0 +1,21 @@
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10" *ngFor="let productItem of productList">
+            <div class="row p-2 bg-white border rounded">
+                <div class="col-md-3 mt-1"><img *ngIf="productItem?.img" class="img-fluid img-responsive rounded product-image" src="{{productItem.img}}"></div>
+                <div class="col-md-6 mt-1">
+                    <h5>{{productItem.name}}</h5>
+                </div>
+                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                    <h6 class="text-success">{{productItem.price}}</h6>
+                    <div class="d-flex flex-column mt-4">
+                        <button (click)="addCart(productItem)" class="btn btn-outline-primary btn-sm mt-2" type="button">Add to Cart</button>
+                        <button (click)="inc(productItem)" type="button" class="btn btn-outline-info">Tăng</button>
+                        <span style="text-align: center;">{{productItem.qnt}}</span>
+                        <button (click)="dec(productItem)" type="button" class="btn btn-outline-info">Giảm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
